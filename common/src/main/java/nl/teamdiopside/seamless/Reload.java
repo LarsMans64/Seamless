@@ -54,7 +54,7 @@ public class Reload {
                 HashMap<String, Set<String>> connectingBlockstates = getBlockStates(json, "connecting_blockstates");
 
                 temp.add(new OutlineRule(blocks, blockstates, directions, connectingBlocks, connectingBlockstates, key));
-                Seamless.LOGGER.info("Loaded Seamless outline rule " + key);
+                Seamless.LOGGER.debug("Loaded Seamless outline rule {}", key);
             } catch (Exception e) {
                 Seamless.LOGGER.error("Failed to parse JSON for Seamless outline rule " + key + ".json, Error: " + e);
             }
