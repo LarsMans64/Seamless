@@ -10,6 +10,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import nl.teamdiopside.seamless.annotation.mixin.ConditionalMixin;
+import nl.teamdiopside.seamless.compat.Mods;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@ConditionalMixin(mods = Mods.UPGRADE_AQUATIC)
 @Mixin(TallBeachgrassBlock.class)
 public abstract class TallBeachgrassBlockMixin extends DoublePlantBlock implements BonemealableBlock {
 
