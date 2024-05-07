@@ -27,12 +27,9 @@ import java.util.Objects;
 @Mixin(LevelRenderer.class)
 public abstract class LevelRendererMixin implements ResourceManagerReloadListener, AutoCloseable {
 
-    @Unique
-    private VoxelShape lastShape = Shapes.block();
-    @Unique
-    private BlockPos lastPos = BlockPos.ZERO;
-    @Unique
-    private BlockState lastState = Blocks.AIR.defaultBlockState();
+    @Unique private VoxelShape seamless$lastShape = Shapes.block();
+    @Unique private BlockPos seamless$lastPos = BlockPos.ZERO;
+    @Unique private BlockState seamless$lastState = Blocks.AIR.defaultBlockState();
 
     @Shadow private @Nullable ClientLevel level;
 
@@ -41,15 +38,15 @@ public abstract class LevelRendererMixin implements ResourceManagerReloadListene
         VoxelShape shape;
 
         if (Seamless.fastEnabled) {
-            if (Objects.equals(lastState, blockState) && Objects.equals(lastPos, blockPos)) {
-                shape = lastShape;
+            if (Objects.equals(seamless$lastState, blockState) && Objects.equals(seamless$lastPos, blockPos)) {
+                shape = seamless$lastShape;
             } else {
                 OutlineFinder.Recursion recursion = OutlineFinder.findAndAddShapes(level, blockState, blockPos, new HashSet<>(), blockPos, entity);
                 shape = recursion.voxelShape().optimize();
 
-                lastShape = shape;
-                lastPos = blockPos;
-                lastState = blockState;
+                seamless$lastShape = shape;
+                seamless$lastPos = blockPos;
+                seamless$lastState = blockState;
             }
         } else {
             OutlineFinder.Recursion recursion = OutlineFinder.findAndAddShapes(level, blockState, blockPos, new HashSet<>(), blockPos, entity);

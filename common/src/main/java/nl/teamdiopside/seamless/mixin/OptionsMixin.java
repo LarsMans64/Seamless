@@ -11,6 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class OptionsMixin {
     @Inject(method = "processOptions", at = @At("HEAD"))
     private void processOptions(Options.FieldAccess fieldAccess, CallbackInfo ci) {
-        fieldAccess.process("fastSeamless", Seamless.fastOption);
+        if (!Seamless.modIds.contains("optifine")) {
+            fieldAccess.process("fastSeamless", Seamless.fastOption);
+        }
     }
 }
