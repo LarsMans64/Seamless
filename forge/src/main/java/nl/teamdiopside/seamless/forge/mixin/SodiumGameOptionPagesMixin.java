@@ -7,6 +7,8 @@ import me.jellysquid.mods.sodium.client.gui.options.binding.compat.VanillaBoolea
 import me.jellysquid.mods.sodium.client.gui.options.control.TickBoxControl;
 import me.jellysquid.mods.sodium.client.gui.options.storage.MinecraftOptionsStorage;
 import nl.teamdiopside.seamless.Seamless;
+import nl.teamdiopside.seamless.annotation.mixin.ConditionalMixin;
+import nl.teamdiopside.seamless.compat.Mods;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import java.util.Collection;
 
+@ConditionalMixin(mods = {Mods.RUBIDIUM, Mods.EMBEDDIUM})
 @Mixin(SodiumGameOptionPages.class)
 public abstract class SodiumGameOptionPagesMixin {
     @Shadow @Final private static MinecraftOptionsStorage vanillaOpts;

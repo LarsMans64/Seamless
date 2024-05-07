@@ -3,14 +3,13 @@
   "package": "nl.teamdiopside.seamless.forge.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
+  "plugin": "nl.teamdiopside.seamless.SeamlessMixinPlugin",
   "client": [
-    "FloweringRushBlockMixin",
     "OptionsMixin",
-    "PickerelweedDoublePlantBlockMixin",
+    "FloweringRushBlockMixin",
     "SodiumGameOptionPagesMixin",
+    "PickerelweedDoublePlantBlockMixin",
     "TallBeachgrassBlockMixin"
-  ],
-  "mixins": [
   ],
   "injectors": {
     "defaultRequire": 1
