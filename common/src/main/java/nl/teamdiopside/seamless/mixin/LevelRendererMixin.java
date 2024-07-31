@@ -5,14 +5,20 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import nl.teamdiopside.seamless.OutlineFinder;
 import nl.teamdiopside.seamless.Seamless;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,6 +41,13 @@ public abstract class LevelRendererMixin implements ResourceManagerReloadListene
 
     @Inject(method = "renderHitOutline", at = @At("HEAD"), cancellable = true)
     private void renderHitOutline(PoseStack poseStack, VertexConsumer vertexConsumer, Entity entity, double i, double b, double c, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
+
+        if (Seamless.modIds.contains("diagonalfences") && blockState.is(BlockTags.FENCES)
+                || Seamless.modIds.contains("diagonalwindows") && (blockState.is(Blocks.IRON_BARS) || blockState.is(getTag("forge:glass_panes")) || blockState.is(getTag("c:glass_panes")))
+                || Seamless.modIds.contains("diagonalwalls") && blockState.is(BlockTags.WALLS)) {
+            return;
+        }
+
         VoxelShape shape;
 
         if (Seamless.fastEnabled) {
@@ -53,8 +66,11 @@ public abstract class LevelRendererMixin implements ResourceManagerReloadListene
             shape = recursion.voxelShape().optimize();
         }
 
-
         LevelRenderer.renderShape(poseStack, vertexConsumer, shape, (double)blockPos.getX() - i, (double)blockPos.getY() - b, (double)blockPos.getZ() - c, 0.0f, 0.0f, 0.0f, 0.4f);
         ci.cancel();
+    }
+
+    private static @NotNull TagKey<Block> getTag(String string) {
+        return TagKey.create(Registries.BLOCK, new ResourceLocation(string));
     }
 }
