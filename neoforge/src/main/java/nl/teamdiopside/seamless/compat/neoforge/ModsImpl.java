@@ -1,7 +1,7 @@
-package nl.teamdiopside.seamless.compat.forge;
+package nl.teamdiopside.seamless.compat.neoforge;
 
-import net.minecraftforge.fml.loading.LoadingModList;
-import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
+import net.neoforged.fml.loading.LoadingModList;
+import net.neoforged.fml.loading.moddiscovery.ModInfo;
 
 import java.util.List;
 

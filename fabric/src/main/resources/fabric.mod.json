@@ -21,7 +21,7 @@
     ]
   },
   "mixins": [
-    "seamless.mixins.json",
+    "seamless-fabric.mixins.json",
     "seamless-common.mixins.json"
   ],
   "depends": {

@@ -5,13 +5,15 @@
   "minVersion": "0.8",
   "plugin": "nl.teamdiopside.seamless.SeamlessMixinPlugin",
   "client": [
-    "OptionsMixin",
-    "FloweringRushBlockMixin",
-    "SodiumGameOptionPagesMixin",
-    "PickerelweedDoublePlantBlockMixin",
-    "TallBeachgrassBlockMixin"
+    "OptionsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+    "FloweringRushBlockMixin",
+    "PickerelweedDoublePlantBlockMixin",
+    "SodiumGameOptionPagesMixin",
+    "TallBeachgrassBlockMixin"
+  ]
 }

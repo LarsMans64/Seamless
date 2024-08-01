@@ -30,12 +30,12 @@ public class SeamlessFabric implements ModInitializer {
         Seamless.init();
 
         ModContainer container = FabricLoader.getInstance().getModContainer(Seamless.MOD_ID).orElseThrow();
-        ResourceManagerHelper.registerBuiltinResourcePack(new ResourceLocation(Seamless.MOD_ID, Seamless.RESOURCE_PACK), container, Component.translatable("seamless.resource_pack"), ResourcePackActivationType.DEFAULT_ENABLED);
+        ResourceManagerHelper.registerBuiltinResourcePack(ResourceLocation.fromNamespaceAndPath(Seamless.MOD_ID, Seamless.RESOURCE_PACK), container, Component.translatable("seamless.resource_pack"), ResourcePackActivationType.DEFAULT_ENABLED);
 
         ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(new IdentifiableResourceReloadListener() {
             @Override
             public ResourceLocation getFabricId() {
-                return new ResourceLocation(Seamless.MOD_ID, "outline_reload_listener");
+                return ResourceLocation.fromNamespaceAndPath(Seamless.MOD_ID, "outline_reload_listener");
             }
 
             @Override

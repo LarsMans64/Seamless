@@ -110,14 +110,14 @@ public class OutlineFinder {
         Set<Block> blocks = new HashSet<>();
 
         if (string.startsWith("#")) {
-            TagKey<Block> blockTagKey = TagKey.create(Registries.BLOCK, new ResourceLocation(string.replace("#", "")));
+            TagKey<Block> blockTagKey = TagKey.create(Registries.BLOCK, ResourceLocation.parse(string.replace("#", "")));
             BuiltInRegistries.BLOCK.getOrCreateTag(blockTagKey).stream().forEach(blockHolder -> blocks.add(blockHolder.value()));
         } else {
             if (!Seamless.modIds.contains(string.replace("#", "").split(":")[0])) {
                 return blocks;
             }
 
-            Block block = BuiltInRegistries.BLOCK.get(new ResourceLocation(string));
+            Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(string));
             if (block == Blocks.AIR && !string.split(":")[1].equals("air")) {
                 initialError("Block \"" + string + "\" from " + location + " does not exist!");
             } else {

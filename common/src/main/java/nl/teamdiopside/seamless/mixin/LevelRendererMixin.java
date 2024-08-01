@@ -71,6 +71,6 @@ public abstract class LevelRendererMixin implements ResourceManagerReloadListene
     }
 
     private static @NotNull TagKey<Block> getTag(String string) {
-        return TagKey.create(Registries.BLOCK, new ResourceLocation(string));
+        return TagKey.create(Registries.BLOCK, ResourceLocation.parse(string));
     }
 }

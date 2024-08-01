@@ -3,15 +3,10 @@ package nl.teamdiopside.seamless;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.GsonHelper;
+import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.*;
 
 public class Reload {
@@ -87,28 +82,7 @@ public class Reload {
         String directory = "seamless_rules";
         Gson gson = new Gson();
         HashMap<ResourceLocation, JsonElement> map = Maps.newHashMap();
-        int i = directory.length() + 1;
-        for (Map.Entry<ResourceLocation, Resource> entry : resourceManager.listResources(directory, resourceLocation -> resourceLocation.getPath().endsWith(".json")).entrySet()) {
-            ResourceLocation resourceLocation2 = entry.getKey();
-            String string = resourceLocation2.getPath();
-            ResourceLocation resourceLocation22 = new ResourceLocation(resourceLocation2.getNamespace(), string.substring(i, string.length() - ".json".length()));
-            try {
-                BufferedReader reader = entry.getValue().openAsReader();
-                try {
-                    JsonElement jsonElement = GsonHelper.fromJson(gson, reader, JsonElement.class);
-                    if (jsonElement != null) {
-                        JsonElement jsonElement2 = map.put(resourceLocation22, jsonElement);
-                        if (jsonElement2 == null) continue;
-                        throw new IllegalStateException("Duplicate data file ignored with ID " + resourceLocation22);
-                    }
-                    Seamless.LOGGER.error("Couldn't load data file {} from {} as it's null or empty", resourceLocation22, resourceLocation2);
-                } finally {
-                    ((Reader)reader).close();
-                }
-            } catch (JsonParseException | IOException | IllegalArgumentException exception) {
-                Seamless.LOGGER.error("Couldn't parse data file {} from {}", resourceLocation22, resourceLocation2, exception);
-            }
-        }
+        SimpleJsonResourceReloadListener.scanDirectory(resourceManager, directory, gson, map);
         return map;
     }
 }
