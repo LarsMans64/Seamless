@@ -36,7 +36,7 @@ public abstract class OptionsMixin {
                 try {
                     SeamlessForgeClient.file.createNewFile();
                     FileWriter writer = new FileWriter(SeamlessForgeClient.file);
-                    writer.write("Don't delete this file if you want to disable the default Seamless resources, otherwise it's ok to delete :)");
+                    writer.write("This file makes sure the seamless default resource pack is disabled for you. You probably want to delete this file.");
                     writer.close();
                 }
                 catch (IOException ignored) {}

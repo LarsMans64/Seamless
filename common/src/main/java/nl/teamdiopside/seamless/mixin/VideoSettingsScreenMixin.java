@@ -20,6 +20,8 @@ public abstract class VideoSettingsScreenMixin extends OptionsSubScreen {
 
     @Inject(method = "addOptions", at = @At("TAIL"))
     public void init(CallbackInfo ci) {
-        list.addSmall(Seamless.fastOption);
+        if (!Seamless.modIds.contains("optifine")) {
+            list.addSmall(Seamless.fastOption);
+        }
     }
 }
