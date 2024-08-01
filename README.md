@@ -4,11 +4,13 @@ A client-side data-driven mod that connects the outlines of double blocks, like 
 
 ---
 
-[![architectury-api](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/architectury-api_vector.svg)](https://modrinth.com/mod/architectury-api)
-[![Fabric API](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg)](https://modrinth.com/mod/fabric-api)
-[![Forge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg)](https://files.minecraftforge.net/net/minecraftforge/forge/)
+[![architectury-api](https://badges.penpow.dev/badges/requires/architectury-api/cozy.svg)](https://modrinth.com/mod/architectury-api)
+[![Fabric API](https://badges.penpow.dev/badges/requires/fabric-api/cozy.svg)](https://modrinth.com/mod/fabric-api)
+[![Forge](https://badges.penpow.dev/badges/supported/forge/cozy.svg)](https://files.minecraftforge.net/net/minecraftforge/forge/)
 
 ---
+
+![](https://teamdiopside.nl/assets/seamless/slides.gif)
 
 ### Connected outlines for:
 
@@ -47,12 +49,6 @@ Want to learn how? Take a look at the [Docs](https://docs.teamdiopside.nl/seamle
 ### Mods that added their own compat:
 - **Comforts** (Sleeping Bags, Hammocks)
 - **Dramatic Doors** (Tall Doors)
-
----
-
-![On and off](https://teamdiopside.nl/assets/seamless/compare.png)
-
-![Door and Flower](https://teamdiopside.nl/assets/seamless/door_flower.png)
 
 ---
 
