@@ -20,17 +20,17 @@ public abstract class OptionsMixin {
 
     @Shadow public List<String> resourcePacks;
 
-    @Inject(method = "load()V", at = @At("RETURN"))
+    @Inject(method = "load(Z)V", at = @At("RETURN"))
     private void update(CallbackInfo ci) {
-        if (!SeamlessForgeClient.file.exists() && !resourcePacks.contains(Seamless.RESOURCE_PACK)) {
-            resourcePacks.add(Seamless.RESOURCE_PACK);
+        if (!SeamlessForgeClient.file.exists() && !resourcePacks.contains(Seamless.RESOURCE_PACK_FORGE)) {
+            resourcePacks.add(Seamless.RESOURCE_PACK_FORGE);
         }
     }
 
     @Inject(method = "updateResourcePacks", at = @At("HEAD"))
     private void update(PackRepository arg, CallbackInfo ci) {
         for (Pack pack : arg.getSelectedPacks()) {
-            if (pack.getId().equals(Seamless.RESOURCE_PACK)) {
+            if (pack.getId().equals(Seamless.RESOURCE_PACK_FORGE)) {
                 SeamlessForgeClient.file.delete();
             } else {
                 try {

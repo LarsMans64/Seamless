@@ -18,7 +18,7 @@ public abstract class VideoSettingsScreenMixin extends OptionsSubScreen {
         super(screen, options, component);
     }
 
-    @Inject(method = "<init>", at = @At("TAIL"))
+    @Inject(method = "addOptions", at = @At("TAIL"))
     public void init(CallbackInfo ci) {
         list.addSmall(Seamless.fastOption);
     }
