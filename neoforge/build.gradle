@@ -2,22 +2,12 @@ plugins {
     id "com.github.johnrengelman.shadow"
     id "com.modrinth.minotaur" version "2.+"
     id 'com.matthewprenger.cursegradle' version '1.4.0'
-//    id "java-library"
 }
 
 architectury {
     platformSetupLoomIde()
     neoForge()
 }
-
-//loom {
-//    accessWidenerPath = project(":common").loom.accessWidenerPath
-//
-//    neoForge {
-//        convertAccessWideners = true
-//        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
-//    }
-//}
 
 configurations {
     common {
