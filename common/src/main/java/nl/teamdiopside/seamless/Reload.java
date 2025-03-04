@@ -8,6 +8,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Reload {
 
@@ -19,7 +20,7 @@ public class Reload {
 
     public record JsonFile(ResourceLocation key, JsonElement json) {}
 
-    public static final List<OutlineRule> RULES = new ArrayList<>();
+    public static final List<OutlineRule> RULES = new CopyOnWriteArrayList<>();
 
     public static void apply(Map<ResourceLocation, JsonElement> jsons) {
         Seamless.fastEnabled = Seamless.fastOption.get();
