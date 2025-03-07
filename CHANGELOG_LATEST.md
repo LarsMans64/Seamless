@@ -1,8 +1,5 @@
-## 2.3.0
-- Updated to 1.21 and NeoForge
-- Added support for:
-  - Diagonal Fences
-  - Diagonal Windows
-  - Diagonal Walls
-  - Optifine
-- Missing class mixin errors shouldn't show up anymore
+## 2.3.1
+- 1.21:
+  - Removed Forge chest tag from chest rules as NeoForge uses '#c:chests'
+  - Fixed a crash when using '/reload'
+  - Fixed Seamless not working on chests when playing on vanilla servers
